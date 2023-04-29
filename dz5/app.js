@@ -1,7 +1,13 @@
 const usd = document.querySelector("#usd");
 const som = document.querySelector("#som");
 const eur = document.querySelector("#eur");
-
+const postData = (url, data) => {
+  return fetch(url, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data),
+  }).then((response) => response.json());
+};
 const convert = (elem, target, isTrue) => {
   elem.addEventListener("input", () => {
     const request = new XMLHttpRequest();

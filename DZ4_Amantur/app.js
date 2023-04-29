@@ -1,12 +1,13 @@
 const box = document.querySelector(".wrapper");
-const finddata = () =>  {
-    const request = new XMLHttpRequest();
-    request.open("GET","data.json");
-    request.setRequestHeader("Content-Type","application/json");
-    request.send();
-    request.addEventListener("load",()=>{
-        const data =  JSON.parse(request.response);
-          console.log(data);
+const postData = (url, data) => {
+    return fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(data),
+    }).then((response) => response.json());
+  };
+  const getData = () => {
+    postData("data.json", {}).then((data) => { 
           Object.values(data.obj).forEach((items) =>{
             items.forEach((item)=>{
                 const element = document.createElement("div");
