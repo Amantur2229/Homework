@@ -122,10 +122,14 @@ const postData = (form)=>{
     form.addEventListener("submit" , (e) =>{
         e.preventDefault()
 
-        const request = new XMLHttpRequest()
-        request.open("POST", "server.php")
-        request.setRequestHeader("Content-Type","application/json")
-
+        const postData = (url,data)=>{
+            const request =fetch(url,{
+                method:"POST",
+                headers:{"Content-Type":"application/json"},
+                body:data,
+            })
+                return request;
+        };
 
         const formData = new FormData(form)
 
